@@ -18,11 +18,11 @@ jobs:
         with:
           java-version: 11
       - name: Make Gradle executable
-        working-directory: ./order-service
+        working-directory: ./auth-service
         run: chmod +x ./gradlew
       
       - name: Test with Gradle
-        working-directory: ./order-service
+        working-directory: ./auth-service
         run: ./gradlew clean test -i
      
       - name: Cache Gradle packages

@@ -1,14 +1,22 @@
 package limpo.authservice.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -31,9 +39,14 @@ public class User implements UserDetails {
      *
      * @return the authorities, sorted by natural key (never <code>null</code>)
      */
+    @JsonDeserialize(using = limpo.authservice.util.CustomAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+
+        list.add(new SimpleGrantedAuthority(this.role));
+
+        return list;
     }
 
     /**
@@ -43,7 +56,7 @@ public class User implements UserDetails {
      */
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
 
     /**
@@ -54,7 +67,7 @@ public class User implements UserDetails {
      */
     @Override
     public String getUsername() {
-        return null;
+        return this.email;
     }
 
     /**

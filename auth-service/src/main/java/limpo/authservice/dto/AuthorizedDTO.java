@@ -1,11 +1,12 @@
 package limpo.authservice.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class AuthorizedRequest {
-
-    private String username;
+@AllArgsConstructor
+public class AuthorizedDTO {
+    private String email;
 
     private String token;
 

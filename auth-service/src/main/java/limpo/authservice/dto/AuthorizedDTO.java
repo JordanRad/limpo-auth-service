@@ -11,4 +11,6 @@ public class AuthorizedDTO {
     private String token;
 
     private String role;
+
+    private String refreshToken;
 }

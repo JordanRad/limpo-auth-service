@@ -34,7 +34,6 @@ public class User implements UserDetails {
 
     private String role;
 
-
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.
      *

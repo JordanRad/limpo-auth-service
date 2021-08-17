@@ -2,7 +2,6 @@ package limpo.authservice.service;
 
 import limpo.authservice.dto.Credentials;
 import limpo.authservice.dto.User;
-import limpo.authservice.dto.UserRegistrationDTO;
 import limpo.authservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +16,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder encoder;
 
-    public User register(UserRegistrationDTO user) {
+    public User register(User user) {
 
         try {
             // Encode the password

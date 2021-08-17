@@ -29,7 +29,6 @@ public class UserRepositoryTests {
 
     @BeforeEach
     public void setup(){
-
         userOne = new User();
         userOne.setEmail("test@test.com");
         userOne.setFirstName("TestFirstName");
@@ -58,6 +57,7 @@ public class UserRepositoryTests {
         user.setRole("ROLE_ADMIN");
 
         User savedUser = repository.save(user);
+
         Assertions.assertTrue(savedUser.getAuthorities().toString().contains(user.getRole()));
         Assertions.assertEquals(savedUser.getFirstName(),user.getFirstName());
         Assertions.assertEquals(savedUser.getLastName(),user.getLastName());

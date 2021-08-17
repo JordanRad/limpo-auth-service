@@ -3,11 +3,9 @@ package limpo.authservice.controller;
 import limpo.authservice.dto.AuthorizedDTO;
 import limpo.authservice.dto.Credentials;
 import limpo.authservice.dto.User;
-import limpo.authservice.dto.UserRegistrationDTO;
 import limpo.authservice.service.JwtService;
 import limpo.authservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,7 @@ public class AuthController {
     private JwtService jwtService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserRegistrationDTO user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
         User registeredUser = userService.register(user);
 
         if (registeredUser == null) {
@@ -61,6 +59,5 @@ public class AuthController {
         } catch (Exception e) {
             return new ResponseEntity<>("Invalid Token", HttpStatus.CONFLICT);
         }
-
     }
 }

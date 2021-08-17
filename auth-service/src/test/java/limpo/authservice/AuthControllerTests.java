@@ -2,11 +2,10 @@ package limpo.authservice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import limpo.authservice.dto.AuthorizedDTO;
 import limpo.authservice.dto.Credentials;
 import limpo.authservice.dto.User;
 import limpo.authservice.repository.UserRepository;
-import org.apache.http.client.methods.HttpPost;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,16 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -52,7 +41,6 @@ public class AuthControllerTests {
         testUser = new User(1, "Jordan", "Radushev", "test@mail.com", "12345678", "ROLE_ADMIN");
         repository.save(testUser);
     }
-
 
     @AfterEach
     void delete() {

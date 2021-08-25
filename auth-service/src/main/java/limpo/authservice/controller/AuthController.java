@@ -70,10 +70,10 @@ public class AuthController {
     }
 
     @PostMapping("/refreshToken")
-    public ResponseEntity<?> refreshToken(@RequestBody AuthorizedDTO request) {
+    public ResponseEntity<?> refreshToken(@RequestParam String refreshToken) {
 
         // Get decoded bytes
-        byte[] decodedBytes = Base64.decodeBase64(request.getRefreshToken().getBytes());
+        byte[] decodedBytes = Base64.decodeBase64(refreshToken.getBytes());
 
         // Convert to String
         String[] decodedToken = Base64Util.decodeBytes(decodedBytes).split(",");
@@ -85,13 +85,13 @@ public class AuthController {
         if(user!=null && user.getRole().equals(decodedToken[2])){
             // Generate new JWT
             String newJwt = jwtService.generateToken(email);
-            AuthorizedDTO dto = new AuthorizedDTO(email,newJwt,user.getRole(),request.getRefreshToken());
+            AuthorizedDTO dto = new AuthorizedDTO(email,newJwt,user.getRole(),refreshToken);
 
             return new ResponseEntity<>(dto, HttpStatus.OK);
         }
 
 
-        return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("", HttpStatus.UNAUTHORIZED);
 
     }
 }

@@ -16,9 +16,10 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping(AuthController.BASE_URL)
+@CrossOrigin(origins = "*")
 public class AuthController {
 
-    public static final String BASE_URL = "/api/v1/auth-service";
+    public static final String BASE_URL = "/api/v1";
 
     @Autowired
     private UserService userService;
@@ -92,6 +93,13 @@ public class AuthController {
 
 
         return new ResponseEntity<>("", HttpStatus.UNAUTHORIZED);
+
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<?> getByEmail(@PathVariable String email) {
+
+        return new ResponseEntity<>(userService.getByEmail(email),HttpStatus.OK);
 
     }
 }

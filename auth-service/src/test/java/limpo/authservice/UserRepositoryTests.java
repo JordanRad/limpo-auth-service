@@ -39,7 +39,6 @@ public class UserRepositoryTests {
     public void shouldGetASingleUserByEmail() {
         User user = repository.findByEmail(userOne.getEmail()).orElse(null);
 
-        Assertions.assertTrue(userOne.getAuthorities().toString().contains(user.getRole()));
         Assertions.assertEquals(userOne.getFirstName(),user.getFirstName());
         Assertions.assertEquals(userOne.getLastName(),user.getLastName());
     }
@@ -55,7 +54,6 @@ public class UserRepositoryTests {
 
         User savedUser = repository.save(user);
 
-        Assertions.assertTrue(savedUser.getAuthorities().toString().contains(user.getRole()));
         Assertions.assertEquals(savedUser.getFirstName(),user.getFirstName());
         Assertions.assertEquals(savedUser.getLastName(),user.getLastName());
     }

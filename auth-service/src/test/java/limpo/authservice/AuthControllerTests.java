@@ -35,7 +35,7 @@ public class AuthControllerTests {
     @Autowired
     private ObjectMapper mapper;
 
-    private final String URL = "/api/v1/auth-service";
+    private final String URL = "/api/v1/";
 
     @BeforeEach
     void setup() {
